@@ -1,5 +1,7 @@
 # buzzer-bo
 
+## Group members
+- Croquelois Adrien
 ## Project setup
 ```
 npm install
