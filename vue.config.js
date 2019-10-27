@@ -5,6 +5,9 @@ module.exports = {
       treeShake: true
     }
   },
+  chainWebpack: config => {
+    config.module.rules.delete('eslint');
+  },
   transpileDependencies: [
     /[\\\/]node_modules[\\\/]quasar[\\\/]/
   ]
