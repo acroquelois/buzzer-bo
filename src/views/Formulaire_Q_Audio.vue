@@ -2,7 +2,7 @@
 <div class="row justify-center items-center bg-blue div_max_height">
     <div class="col-3 column q-pa-md bg-white q-gutter-md">
         <div>
-            <p>Formulaire : Question Image</p>
+            <p>Formulaire : Question Audio</p>
         </div>
         <div>
             <div>
@@ -15,7 +15,7 @@
             <div>
                 <q-uploader
                     url="http://localhost:8080/upload"
-                    label="Image 1"
+                    label="Piste audio"
                     color="blue"
                     square
                     flat
@@ -23,30 +23,7 @@
                     style="max-width: 300px"
                 />
             </div>
-            <div>
-                <q-uploader
-                    url="http://localhost:8080/upload"
-                    label="Image 2"
-                    color="blue"
-                    square
-                    flat
-                    bordered
-                    style="max-width: 300px"
-                    />
-            </div>
-        </div>
-        <div>
-              <q-uploader
-                 url="http://localhost:8080/upload"
-                 label="Image 3"
-                 color="blue"
-                 square
-                 flat
-                 bordered
-                 style="max-width: 300px"
-               />
-        </div>
-        <div>
+          <div>
           <div>
               <q-input
               v-model="answer"
@@ -62,6 +39,7 @@
               />
           </div>
         </div>
+      </div>
     </div>
 </div>
 </template>
@@ -73,7 +51,7 @@ import{
     QUploader
 } from 'quasar'
 export default {
-    name: 'Formulaire_Q_Image',
+    name: 'Formulaire_Q_Audio',
 
     components: {
         QInput,
@@ -83,7 +61,7 @@ export default {
 
     data () {
         return {
-            title: 'Que représente cette image ?',
+            title: 'Quelle est cette musique ?',
             answer: null
         }
     },
