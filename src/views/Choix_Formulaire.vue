@@ -6,19 +6,20 @@
         </div>
         <div>
             <div>
-                <q-btn color="white" class="text-black">Standard</q-btn>
+                <q-btn color="white" class="text-black" @click="fqt">Formulaire Question Texte</q-btn>
             </div>
             <div>
-                <q-btn color="white" class="text-black">Standard</q-btn>
+                <q-btn color="white" class="text-black" @click="fqi">Formulaire Question Image</q-btn>
             </div>
              <div>
-               <q-btn color="white" class="text-black">Standard</q-btn>
+               <q-btn color="white" class="text-black" @click="fqa">Formulaire Question Audio</q-btn>
             </div>
         </div>
           <div class="row justify-end">
               <q-btn
               color="black"
               label="Retourner à l'accueil"
+              @click="accueil"
               />
           </div>
     </div>
@@ -45,9 +46,18 @@ export default {
         }
     },
     methods:{
-        submit(){
-            this.$router.push('/accueil')
-        }
+        fqt(){
+                this.$router.push('/fqt')
+            },
+        fqi(){
+                this.$router.push('/fqi')
+            },
+        fqa(){
+                this.$router.push('/fqa')
+            },
+        accueil(){
+                this.$router.push('/accueil')
+            }
     }
 }
 </script>
