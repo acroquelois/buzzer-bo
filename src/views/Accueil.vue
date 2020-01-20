@@ -1,17 +1,25 @@
 <template>
+<div class="background">
+    <div class="row q-pa-md q-gutter-sm justify-end">
+    <q-btn color="blue" text-color="black" label="Ajouter une question"  @click="choix"  />
+</div>
+<div class="row justify-center items-center div_max_height">
 <q-table
-  title="TABLEAU DE QUESTION"
+  class="transparent"
   :data="data"
   :columns="columns"
   row-key="name"
 >
-<<q-td slot="body-cell-delete" slot-scope="props" :props="props">
+
+<q-td slot="body-cell-delete" slot-scope="props" :props="props">
     <q-btn flat icon="delete" color="red" @click="goToViewLog(cell.row)" />
   </q-td>
   <q-td slot="body-cell-edit" slot-scope="props" :props="props">
-    <q-btn flat icon="edit" @click="goToViewLog(cell.row)" />
+    <q-btn flat icon="edit" color="green-13" @click="goToViewLog(cell.row)" />
   </q-td>
 </q-table>
+</div>
+</div>
 </template>
 
 <script>
@@ -151,10 +159,38 @@ import {
       ]
 
             }
+        },
+        methods:{
+        choix(){
+                this.$router.push('/choixf')
+            }
         }
     }
 </script>
 
 <style>
+.background {
+    background: url(../assets/background.png) ;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    color: white;
+}
+
+thead tr:first-child th {
+  background-color:#2D2B2B;
+  color:white;
+}
+
+tr:nth-child(n+1) {
+  background-color: rgba(255,255,255, 0.5);
+}
+
+.q-table__bottom{
+  background-color: white;
+  opacity: 0.7;
+}
+
 
 </style>

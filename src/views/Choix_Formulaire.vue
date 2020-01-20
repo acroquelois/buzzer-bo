@@ -1,29 +1,11 @@
 <template>
-<div class="row justify-center items-center bg-blue div_max_height">
-    <div class="col-3 column q-pa-md bg-white q-gutter-md">
-        <div>
-            <p>Choix du Formulaire</p>
+    <div class="row justify-center items-center div_max_height background">
+        <div class="choice">
+                <q-btn class="texte" @click="fqt" align="between" icon="description">Formulaire Question Texte</q-btn>
+                <q-btn class="image" @click="fqi" align="between" icon="insert_photo">Formulaire Question Image</q-btn>
+                <q-btn class="audio" @click="fqa" align="between" icon="volume_up">Formulaire Question Audio</q-btn>
         </div>
-        <div>
-            <div>
-                <q-btn color="white" class="text-black" @click="fqt">Formulaire Question Texte</q-btn>
-            </div>
-            <div>
-                <q-btn color="white" class="text-black" @click="fqi">Formulaire Question Image</q-btn>
-            </div>
-             <div>
-               <q-btn color="white" class="text-black" @click="fqa">Formulaire Question Audio</q-btn>
-            </div>
-        </div>
-          <div class="row justify-end">
-              <q-btn
-              color="black"
-              label="Retourner à l'accueil"
-              @click="accueil"
-              />
-          </div>
     </div>
-</div>
 </template>
 
 <script>
@@ -54,9 +36,6 @@ export default {
             },
         fqa(){
                 this.$router.push('/fqa')
-            },
-        accueil(){
-                this.$router.push('/accueil')
             }
     }
 }
@@ -66,4 +45,42 @@ export default {
 .div_max_height{
     min-height: 100vh;
 }
-</style>
+
+.background {
+    background: url(../assets/background.png) ;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    color: white;
+}
+
+.choice {
+    background-color:rgba(255, 255, 255, 0);
+}
+
+.choice .texte {
+    margin: 10em 10em 10em;
+    background-color: #58dd88;
+    box-shadow: none;
+    width: 270px;
+    height: 70px;
+}
+
+.choice .image {
+    margin: 10em 10em 10em;
+    background-color: #60bbef;
+    box-shadow: none;
+    width: 270px;
+    height: 70px;
+}
+
+
+.choice .audio {
+    margin: 10em 10em 10em;
+    background-color: #ff840e;
+    box-shadow: none;
+    width: 270px;
+    height: 70px;
+}
+</style>    
