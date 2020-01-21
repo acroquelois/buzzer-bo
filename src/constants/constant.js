@@ -1,1 +1,1 @@
-export const URL_API = "http://localhost:8080/api/"
+export const URL_API = "http://buzzer1.westeurope.cloudapp.azure.com/api/"
