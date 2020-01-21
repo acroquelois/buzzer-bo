@@ -1,17 +1,34 @@
 <template>
-<div class="row justify-center items-center bg-blue div_max_height">
-    <div class="col-3 column q-pa-md bg-white q-gutter-md">
-        <div>
-            <p>Formulaire : Question Texte</p>
-        </div>
-        <div>
-            <div>
-                <q-input
-                v-model="title"
-                label="Intitulé de la question"
-                stack-label
-                />
-            </div>
+<div class="div_max_height_layout background">
+    <div class="q-pa-xl">
+        <q-card flat bordered class="my-card q-ma-xl background-green">
+            <q-card-section>
+                <div class="text-h6">Formulaire : Question Texte</div>
+            </q-card-section>
+            <q-separator inset />
+
+            <q-card-section>
+                <div class="row q-gutter-sm">
+                    <div class="column col">
+                        <div class="q-pl-lg text-h7">Question :</div>
+                        <q-input class="q-mt-lg" rounded standout v-model="title"/>
+                        <div class="q-mt-lg q-pl-lg text-h7">Réponse :</div>
+                        <q-input class="q-mt-md" rounded standout v-model="title"/>
+                    </div>
+                    <div class="column col">
+                        <div class="q-pl-lg text-h7">Propositions :</div>
+                        <q-input class="q-mt-lg" rounded standout v-model="title"/>
+                        <q-input class="q-mt-lg" rounded standout v-model="title"/>
+                        <q-input class="q-mt-lg" rounded standout v-model="title"/>
+                    </div>
+                </div>
+            </q-card-section>
+            <q-card-actions>
+                <q-btn class="q-ml-md q-mb-md" outline>Envoyer</q-btn>
+            </q-card-actions>
+        </q-card>
+        <!-- <div>
+            
           <div>
             <div>
               <q-input
@@ -48,8 +65,8 @@
                 @click="submit"
                 />
             </div>
-        </div>
-      </div>
+        </div> 
+      </div>-->
     </div>
 </div>
 </template>
@@ -57,6 +74,10 @@
 <script>
 import{
     QInput,
+    QCard,
+    QSeparator,
+    QCardSection,
+    QCardActions,
     QBtn,
     QUploader
 } from 'quasar'
@@ -66,12 +87,17 @@ export default {
     components: {
         QInput,
         QBtn,
-        QUploader
+        QUploader,
+        QSeparator,
+        QCard,
+        QCardSection,
+        QCardActions,
     },
 
     data () {
         return {
-            answer: null
+            answer: null,
+            title: ""
         }
     },
     methods:{

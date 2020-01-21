@@ -3,7 +3,6 @@ import http from '../http'
 const authResource = {
   async token(username, password) {
     const response = await http.post(`auth/login`, {'email': username, 'password': password})
-    console.log('intoken', response)
     return response
   }
 //   async reset({username}) {

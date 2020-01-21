@@ -1,9 +1,9 @@
 <template>
-    <div class="row justify-center items-center div_max_height background">
-        <div class="choice">
-                <q-btn class="texte" @click="fqt" align="between" icon="description">Formulaire Question Texte</q-btn>
-                <q-btn class="image" @click="fqi" align="between" icon="insert_photo">Formulaire Question Image</q-btn>
-                <q-btn class="audio" @click="fqa" align="between" icon="volume_up">Formulaire Question Audio</q-btn>
+    <div class="div_max_height_layout items-center background">
+        <div class="row col-12 q-pa-xl choice justify-between">
+            <q-btn class="texte q-pa-xl" @click="fqt" align="between" icon="description">Formulaire Question Texte</q-btn>
+            <q-btn class="image q-pa-xl" @click="fqi" align="between" icon="insert_photo">Formulaire Question Image</q-btn>
+            <q-btn class="audio q-pa-xl" @click="fqa" align="between" icon="volume_up">Formulaire Question Audio</q-btn>
         </div>
     </div>
 </template>
@@ -41,14 +41,6 @@ export default {
             }
     },
     mounted(){
-        http.get('question/getquestions')
-        .then((result) => {
-            console.log('query', result)
-        }).catch((e) => {
-            console.log(e)
-        })
-        localStorage.test = this.test
-        console.log('page1', localStorage.test)
     }
 }
 </script>
@@ -72,27 +64,18 @@ export default {
 }
 
 .choice .texte {
-    margin: 10em 10em 10em;
     background-color: #58dd88;
     box-shadow: none;
-    width: 270px;
-    height: 70px;
 }
 
 .choice .image {
-    margin: 10em 10em 10em;
     background-color: #60bbef;
     box-shadow: none;
-    width: 270px;
-    height: 70px;
 }
 
 
 .choice .audio {
-    margin: 10em 10em 10em;
     background-color: #ff840e;
     box-shadow: none;
-    width: 270px;
-    height: 70px;
 }
 </style>    

@@ -7,6 +7,12 @@ import store from './store'
 
 Vue.config.productionTip = false
 
+const token = localStorage.getItem('token')
+if(token){
+  console.log('ping', token)
+  axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
+}
+
 new Vue({
   router,
   store,

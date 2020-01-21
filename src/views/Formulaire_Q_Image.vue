@@ -1,5 +1,5 @@
 <template>
-<div class="row justify-center items-center bg-blue div_max_height">
+<div class="row justify-center items-center div_max_height background">
     <div class="col-3 column q-pa-md bg-white q-gutter-md">
         <div>
             <p>Formulaire : Question Image</p>

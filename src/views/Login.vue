@@ -68,6 +68,10 @@
 .div_max_height{
     min-height: 100vh;
 }
+
+.div_max_height_layout{
+    min-height: 93vh;
+}
 .background {
     background: url(../assets/background.png) ;
     -webkit-background-size: cover;

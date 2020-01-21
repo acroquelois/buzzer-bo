@@ -1,6 +1,6 @@
 <template>
     <q-layout view="lHh Lpr lff" class="default">
-        <q-header elevated>
+        <q-header elevated class="bgcolorstyle">
             <q-toolbar>
                 <q-toolbar-title>
                     Buzzer
@@ -39,3 +39,9 @@
         }
     }
 </script>
+
+<style scoped>
+.bgcolorstyle{
+    background: #2d2b2b;
+}
+</style>

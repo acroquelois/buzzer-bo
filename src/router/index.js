@@ -17,31 +17,34 @@ const routes = [
     component: Login
   },
   {
-    path: '/choixf',
-    name: 'choixformulaire',
-    component: Choix_Formulaire
-  },
-  {
-    path: '/fqi',
-    name: 'formulaireqi',
-    component: Formulaire_Q_Image
-  },
-  {
-    path: '/fqa',
-    name: 'formulaireqa',
-    component: Formulaire_Q_Audio
-  },
-  {
-    path: '/fqt',
-    name: 'formulaireqt',
-    component: Formulaire_Q_Texte
-  },
-  {
     path:'/',
     redirect:'accueil',
     component: BuzzerLayout,
     children:[
-      {path:'/accueil', component: Accueil}
+      {
+        path:'/accueil', 
+        component: Accueil
+      },
+      {
+        path: '/choixf',
+        name: 'choixformulaire',
+        component: Choix_Formulaire
+      },
+      {
+        path: '/fqi',
+        name: 'formulaireqi',
+        component: Formulaire_Q_Image
+      },
+      {
+        path: '/fqa',
+        name: 'formulaireqa',
+        component: Formulaire_Q_Audio
+      },
+      {
+        path: '/fqt',
+        name: 'formulaireqt',
+        component: Formulaire_Q_Texte
+      }
     ]
   }
 ]

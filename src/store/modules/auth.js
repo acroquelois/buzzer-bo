@@ -1,4 +1,4 @@
-import authResource from '../../api/ressources/auth'
+import http from '../../api/http'
 
 const state = {
   token: localStorage.getItem('token'),
@@ -8,14 +8,12 @@ const mutations = {
   SET_TOKEN(state, payload) {
     state.token = payload
     localStorage.setItem('token', payload)
-    console.log('sest_token', localStorage.getItem('token'))
-    axios.defaults.headers.common['Authorization'] = `Bearer ${payload}`;
   }
 }
 
 const actions = {
   async logIn({ commit }, {username, password}) {
-    const tokenResponse = await authResource.token(username, password)
+    const tokenResponse = await http.post(`auth/login`, {'email': username, 'password': password})
     commit('SET_TOKEN', tokenResponse.data.token)
   }
 }
