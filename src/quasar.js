@@ -23,7 +23,7 @@ import {
 } from 'quasar'
 
 Vue.use(Quasar, {
-  config: {},
+  config: {notify: { /* Notify defaults */ }},
   components: {
     QLayout,
     QHeader,

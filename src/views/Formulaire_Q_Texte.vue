@@ -78,7 +78,10 @@ export default {
         submit(){
             this.$router.push('/accueil')
         }
-    }
+    },
+    mounted() {
+        console.log('page2', localStorage.test)
+    },
 }
 </script>
 

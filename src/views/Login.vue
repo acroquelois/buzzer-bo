@@ -6,7 +6,7 @@
               <p>LOGIN</p>
             </div>
             <div class="user">
-                <q-input color="white" v-model="usernam" label="Nom d'utilisateur">
+                <q-input color="white" v-model="username" label="Nom d'utilisateur">
                   <template v-slot:prepend>
                     <q-avatar>
                       <img src="../assets/user.png"/>
@@ -52,10 +52,15 @@
             }
         },
         methods:{
-            connexion(){
-                this.$router.push('/accueil')
+            async connexion(){
+              try {
+                  await this.$store.dispatch('auth/logIn', {username: this.username, password: this.password})
+                  this.$router.push('/accueil')
+              } catch (e) {
+                  console.log(e)
+              }
             }
-        }
+        },
     }
 </script>
 

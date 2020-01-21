@@ -9,6 +9,7 @@
 </template>
 
 <script>
+import http from '../api/http'
 import{
     QInput,
     QBtn,
@@ -25,6 +26,7 @@ export default {
 
     data () {
         return {
+            test: "test local storage"
         }
     },
     methods:{
@@ -37,6 +39,16 @@ export default {
         fqa(){
                 this.$router.push('/fqa')
             }
+    },
+    mounted(){
+        http.get('question/getquestions')
+        .then((result) => {
+            console.log('query', result)
+        }).catch((e) => {
+            console.log(e)
+        })
+        localStorage.test = this.test
+        console.log('page1', localStorage.test)
     }
 }
 </script>
