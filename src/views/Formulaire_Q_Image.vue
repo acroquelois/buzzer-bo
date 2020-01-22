@@ -1,7 +1,36 @@
 <template>
-<div class="row justify-center items-center div_max_height background">
-    <div class="col-3 column q-pa-md bg-white q-gutter-md">
-        <div>
+<div class="div_max_height_layout background">
+    <div class="q-pa-xl">
+        <q-card flat bordered class="my-card q-ma-xl bg-blue">
+            <q-card-section>
+                <div class="text-h6">Formulaire : Question Image</div>
+            </q-card-section>
+            <q-separator inset />
+
+            <q-card-section>
+                <div class="row q-gutter-sm">
+                    <div class="column col">
+                        <div class="q-pl-lg text-h7">Intitulé de la question :</div>
+                        <q-input class="q-mt-lg" rounded standout placeholder="Exemple" />
+                        <div class="q-mt-lg q-pl-lg text-h7">Réponse :</div>
+                        <q-input class="q-mt-md" rounded standout placeholder="Exemple"/>
+                    </div>
+                    <div class="column col q-pl-xl">
+                        <div class="q-pl-lg text-h7">Image dézoomée :</div>
+                        <q-uploader color="blue"/>
+                        <div class="q-pl-lg text-h7">Image zoom 1 :</div>
+                        <q-uploader color="blue"/>
+                        <div class="q-pl-lg text-h7">Image zoom 2 :</div>
+                        <q-uploader color="blue"/>
+                    </div>
+                </div>
+            </q-card-section>
+            <q-card-actions>
+                <q-btn class="q-ml-md q-mb-md" outline rounded>Envoyer</q-btn>
+            </q-card-actions>
+
+            </q-card>
+        <!--<div>
             <p>Formulaire : Question Image</p>
         </div>
         <div>
@@ -61,7 +90,7 @@
               @click="submit"
               />
           </div>
-        </div>
+        </div>-->
     </div>
 </div>
 </template>
@@ -69,6 +98,10 @@
 <script>
 import{
     QInput,
+    QCard,
+    QSeparator,
+    QCardSection,
+    QCardActions,
     QBtn,
     QUploader
 } from 'quasar'
@@ -77,6 +110,10 @@ export default {
 
     components: {
         QInput,
+        QCard,
+        QSeparator,
+        QCardSection,
+        QCardActions,
         QBtn,
         QUploader
     },

@@ -46,6 +46,11 @@ const routes = [
         path: '/fqt',
         name: 'formulaireqt',
         component: Formulaire_Q_Texte
+      },
+      {
+        path: '/fqt/:id',
+        name: 'formulaireqtid',
+        component: Formulaire_Q_Texte
       }
     ]
   }

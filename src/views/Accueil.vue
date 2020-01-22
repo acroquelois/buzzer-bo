@@ -11,10 +11,10 @@
         row-key="name"
       >
         <q-td slot="body-cell-delete" slot-scope="props" :props="props">
-          <q-btn flat icon="delete" color="red" @click="goToViewLog(cell.row)" />
+          <q-btn flat icon="delete" color="red" @click="deleteQuestion(props.row.id)" />
         </q-td>
         <q-td slot="body-cell-edit" slot-scope="props" :props="props">
-          <q-btn flat icon="edit" color="green-13" @click="goToViewLog(cell.row)" />
+          <q-btn flat icon="edit" color="green-13" @click="updateQuestion(props.row.id)" />
         </q-td>
       </q-table>
     </div>
@@ -84,6 +84,13 @@ import {
             }
         },
         methods:{
+        deleteQuestion(toDelete){
+             http.delete('question/deletequestion',{params : {id:toDelete}})
+                .then( () => {}).catch((e) => { console.log(e)})
+        },
+        updateQuestion(toEdit){
+            this.$router.push({name: 'formulaireqtid', params: { id: toEdit }})
+        },
         choix(){
                 this.$router.push('/choixf')
             }
@@ -94,8 +101,6 @@ import {
                 console.log('test', result.data)
                 this.data = result.data
             })
-          // let ret = questionResource.listQuestion()
-          // console.log('test', ret)
         }
     }
 </script>

@@ -11,20 +11,20 @@
                 <div class="row q-gutter-sm">
                     <div class="column col">
                         <div class="q-pl-lg text-h7">Question :</div>
-                        <q-input class="q-mt-lg" rounded standout v-model="title"/>
+                        <q-input class="q-mt-lg" rounded standout v-model="interogation"/>
                         <div class="q-mt-lg q-pl-lg text-h7">Réponse :</div>
-                        <q-input class="q-mt-md" rounded standout v-model="title"/>
+                        <q-input class="q-mt-md" rounded standout v-model="reponse"/>
                     </div>
                     <div class="column col">
                         <div class="q-pl-lg text-h7">Propositions :</div>
-                        <q-input class="q-mt-lg" rounded standout v-model="title"/>
-                        <q-input class="q-mt-lg" rounded standout v-model="title"/>
-                        <q-input class="q-mt-lg" rounded standout v-model="title"/>
+                        <q-input class="q-mt-lg" rounded standout v-model="proposition1"/>
+                        <q-input class="q-mt-lg" rounded standout v-model="proposition2"/>
+                        <q-input class="q-mt-lg" rounded standout v-model="proposition3"/>
                     </div>
                 </div>
             </q-card-section>
             <q-card-actions>
-                <q-btn class="q-ml-md q-mb-md" outline>Envoyer</q-btn>
+                <q-btn class="q-ml-md q-mb-md" @click="submit" outline>Envoyer</q-btn>
             </q-card-actions>
         </q-card>
         <!-- <div>
@@ -72,6 +72,8 @@
 </template>
 
 <script>
+import http from '../api/http'
+
 import{
     QInput,
     QCard,
@@ -96,18 +98,38 @@ export default {
 
     data () {
         return {
-            answer: null,
-            title: ""
+            interogation : null,
+            reponse : null,
+            proposition1 : null,
+            proposition2 : null,
+            proposition3 : null
         }
     },
     methods:{
         submit(){
-            this.$router.push('/accueil')
+            try {
+                http.post('question/postquestiontexte', 
+                {interogation: this.interogation,
+                 reponse: 1,
+                 questionTypeId : "TEXTE",
+                propositions : [
+                {proposition : this.proposition1}
+                ,{proposition : this.reponse}
+                ,{proposition : this.proposition2}
+                ,{proposition : this.proposition3}
+                ]}).then( () => {}).catch((e) => { console.log(e)})
+                this.$router.push('/accueil')
+            } catch (e) {
+                  console.log(e)
+              }
+        },
+    async mounted(){
+        if (this.$route.params.id) {
+            const id = this.$route.params.id
+            console.log('verif', id)
         }
-    },
-    mounted() {
-        console.log('page2', localStorage.test)
-    },
+    }
+    }
 }
 </script>
 
