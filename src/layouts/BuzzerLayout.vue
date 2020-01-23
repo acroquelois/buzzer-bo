@@ -5,7 +5,10 @@
                 <q-toolbar-title>
                     Buzzer
                 </q-toolbar-title>
-                <q-btn color="white" text-color="black" class="btn" label="Accueil" @click="menu"/>
+                <div class = "on-left">
+                    <q-btn color="white" text-color="black" class="btn" label="Accueil" @click="menu"/>
+                </div>
+                <q-btn color="red" class="btn" label="Deconnexion" @click="logOut"/>
             </q-toolbar>
         </q-header>
         <q-page-container>
@@ -41,7 +44,11 @@
         methods:{
             menu(){
                 this.$router.push('/accueil')
+            },
+            async logOut(){
+                this.$router.push('/login')
             }
+
         }
     }
 </script>

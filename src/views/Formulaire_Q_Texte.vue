@@ -118,10 +118,11 @@ export default {
                 ,{proposition : this.proposition3, isCorrect : "false" }
                 ,{proposition : this.reponse, isCorrect : "true" }
                 ]}).then( () => {}).catch((e) => { console.log(e)})
-                this.$router.push('/accueil')
             } catch (e) {
                   console.log(e)
               }
+            this.$router.push('/accueil')
+            window.location.reload()
         },
         mounted(){
         console.log(this.$route.params.id)
