@@ -113,17 +113,18 @@ export default {
                  reponse: 1,
                  questionTypeId : "TEXTE",
                 propositions : [
-                {proposition : this.proposition1}
-                ,{proposition : this.reponse}
-                ,{proposition : this.proposition2}
-                ,{proposition : this.proposition3}
+                {proposition : this.proposition1, isCorrect : "false" }
+                ,{proposition : this.proposition2, isCorrect : "false" }
+                ,{proposition : this.proposition3, isCorrect : "false" }
+                ,{proposition : this.reponse, isCorrect : "true" }
                 ]}).then( () => {}).catch((e) => { console.log(e)})
                 this.$router.push('/accueil')
             } catch (e) {
                   console.log(e)
               }
         },
-    async mounted(){
+        mounted(){
+        console.log(this.$route.params.id)
         if (this.$route.params.id) {
             const id = this.$route.params.id
             console.log('verif', id)

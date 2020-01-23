@@ -5,6 +5,7 @@
                 <q-toolbar-title>
                     Buzzer
                 </q-toolbar-title>
+                <q-btn color="white" text-color="black" class="btn" label="Accueil" @click="menu"/>
             </q-toolbar>
         </q-header>
         <q-page-container>
@@ -35,6 +36,11 @@
         },
         data () {
             return {
+            }
+        },
+        methods:{
+            menu(){
+                this.$router.push('/accueil')
             }
         }
     }

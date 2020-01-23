@@ -84,9 +84,10 @@ import {
             }
         },
         methods:{
-        deleteQuestion(toDelete){
-             http.delete('question/deletequestion',{params : {id:toDelete}})
+        async deleteQuestion(toDelete){
+             await http.delete('question/deletequestion',{params : {id:toDelete}})
                 .then( () => {}).catch((e) => { console.log(e)})
+             window.location.reload()
         },
         updateQuestion(toEdit){
             this.$router.push({name: 'formulaireqtid', params: { id: toEdit }})
