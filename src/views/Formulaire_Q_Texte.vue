@@ -110,7 +110,6 @@ export default {
             try {
                 http.post('question/postquestiontexte', 
                 {interogation: this.interogation,
-                 reponse: 1,
                  questionTypeId : "TEXTE",
                 propositions : [
                 {proposition : this.proposition1, isCorrect : "false" }

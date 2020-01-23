@@ -3,7 +3,7 @@
         <q-header elevated class="bgcolorstyle">
             <q-toolbar>
                 <q-toolbar-title>
-                    Buzzer
+                    <q-btn stretch flat @click="menu" label="Buzzer" />
                 </q-toolbar-title>
                 <div class = "on-left">
                     <q-btn color="white" text-color="black" class="btn" label="Accueil" @click="menu"/>
