@@ -115,7 +115,6 @@ export default {
             });
         },
         submit(){
-            this.createQuestion(this.question, this.audio)
             if (this.$route.params.id) {
                 this.updateQuestion(this.question, this.audio)
             }else{
