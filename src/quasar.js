@@ -15,6 +15,7 @@ import {
   QToolbar,
   QToolbarTitle,
   QBtn,
+  QFile,
   QIcon,
   QList,
   QItem,
@@ -27,6 +28,7 @@ Vue.use(Quasar, {
   components: {
     QLayout,
     QHeader,
+    QFile,
     QDrawer,
     QPageContainer,
     QPage,

@@ -15,18 +15,37 @@
                         <div class="q-mt-lg q-pl-lg text-h7">Réponse :</div>
                         <q-input v-model="question.reponse.reponse" class="q-mt-md" rounded standout />
                     </div>
-                    <div class="column col q-pl-xl">
-                        <div class="q-pl-lg text-h7">Image dézoomée :</div>
-                        <q-uploader color="blue"/>
-                        <div class="q-pl-lg text-h7">Image zoom 1 :</div>
-                        <q-uploader color="blue"/>
-                        <div class="q-pl-lg text-h7">Image zoom 2 :</div>
-                        <q-uploader color="blue"/>
+                    <div class="column col">
+                        <div class="q-pl-lg text-h7">Images :</div>
+                        <q-file class="q-mt-lg" bottom-slots v-model="image1" label="Zoom 1" rounded standout>
+                            <template v-slot:prepend>
+                            <q-icon name="cloud_upload" @click.stop />
+                            </template>
+                            <template v-slot:append>
+                            <q-icon name="close" @click.stop="image1 = null" class="cursor-pointer" />
+                            </template>
+                        </q-file>
+                        <q-file class="q-mt-sm" bottom-slots v-model="image2" label="Zoom 2" rounded standout>
+                            <template v-slot:prepend>
+                                <q-icon name="cloud_upload" @click.stop />
+                            </template>
+                            <template v-slot:append>
+                                <q-icon name="close" @click.stop="image2 = null" class="cursor-pointer" />
+                            </template>
+                        </q-file>
+                        <q-file class="q-mt-sm" bottom-slots v-model="image3" label="Zoom 3" rounded standout>
+                            <template v-slot:prepend>
+                                <q-icon name="cloud_upload" @click.stop />
+                            </template>
+                            <template v-slot:append>
+                                <q-icon name="close" @click.stop="image3 = null" class="cursor-pointer" />
+                            </template>
+                        </q-file>
                     </div>
                 </div>
             </q-card-section>
             <q-card-actions>
-                <q-btn class="q-ml-md q-mb-md" outline rounded>Envoyer</q-btn>
+                <q-btn class="q-ml-md q-mb-md" outline @click="submit">Envoyer</q-btn>
             </q-card-actions>
 
             </q-card>
@@ -35,6 +54,9 @@
 </template>
 
 <script>
+import http from '../api/http'
+import {URL_API} from '../constants/constant'
+
 import{
     QInput,
     QCard,
@@ -42,6 +64,7 @@ import{
     QCardSection,
     QCardActions,
     QBtn,
+    QFile,
     QUploader
 } from 'quasar'
 export default {
@@ -54,6 +77,7 @@ export default {
         QCardSection,
         QCardActions,
         QBtn,
+        QFile,
         QUploader
     },
 
@@ -69,11 +93,34 @@ export default {
                 reponse:{
                     reponse: null
                 },
-            }
+            },
+            image1: null,
+            image2: null,
+            image3: null
         }
     },
     methods:{
+        createQuestion(question, images){
+            var bodyFormData = new FormData();
+            bodyFormData.append('question', JSON.stringify(question));
+            images.forEach(image => {
+            bodyFormData.append('file', image);   
+            });
+            axios({
+                method: 'post',
+                url: `${URL_API}question/postquestion/image`,
+                data: bodyFormData,
+                headers: {'Content-Type': 'multipart/form-data' }
+                })
+                .then(function (response) {
+                    console.log(response);
+                })
+                .catch(function (response) {
+                    console.log(response);
+            });
+        },
         submit(){
+            this.createQuestion(this.question, [this.image1, this.image2, this.image3])
             this.$router.push('/accueil')
         }
     }
