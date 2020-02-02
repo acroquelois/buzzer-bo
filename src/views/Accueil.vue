@@ -97,9 +97,8 @@ import {
             }
         },
         async mounted() {
-          await http.get('question/getquestions')
+          await http.get('question/getlistquestions')
             .then((result) =>{
-                console.log('test', result.data)
                 this.data = result.data
             })
         }

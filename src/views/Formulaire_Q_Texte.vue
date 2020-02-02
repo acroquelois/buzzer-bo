@@ -11,15 +11,25 @@
                 <div class="row q-gutter-sm">
                     <div class="column col">
                         <div class="q-pl-lg text-h7">Question :</div>
-                        <q-input class="q-mt-lg" rounded standout v-model="interogation"/>
+                        <q-input class="q-mt-lg" rounded standout v-model="question.interogation"/>
                         <div class="q-mt-lg q-pl-lg text-h7">Réponse :</div>
-                        <q-input class="q-mt-md" rounded standout v-model="reponse"/>
+                        <q-input 
+                        class="q-mt-md" 
+                        rounded 
+                        standout 
+                        v-model="question.reponse.reponse"
+                        />
                     </div>
                     <div class="column col">
                         <div class="q-pl-lg text-h7">Propositions :</div>
-                        <q-input class="q-mt-lg" rounded standout v-model="proposition1"/>
-                        <q-input class="q-mt-lg" rounded standout v-model="proposition2"/>
-                        <q-input class="q-mt-lg" rounded standout v-model="proposition3"/>
+                        <q-input 
+                        class="q-mt-lg" 
+                        v-for="(proposition, index) in this.question.propositions" 
+                        :key="index"
+                        rounded 
+                        standout 
+                        v-model="proposition.proposition"
+                        />
                     </div>
                 </div>
             </q-card-section>
@@ -73,6 +83,7 @@
 
 <script>
 import http from '../api/http'
+import {URL_API} from '../constants/constant'
 
 import{
     QInput,
@@ -98,38 +109,82 @@ export default {
 
     data () {
         return {
-            interogation : null,
-            reponse : null,
-            proposition1 : null,
-            proposition2 : null,
-            proposition3 : null
+            question:{
+                interogation : null,
+                questionType :{
+                    id: "TEXTE"
+                },
+                propositions: [],
+                reponse:{
+                    reponse: null
+                },
+                propositions:[
+                    {
+                        proposition: null,
+                    },
+                    {   
+                        proposition: null,
+                    },
+                    {   
+                        proposition: null,
+                    }
+                ]
+            }
         }
     },
     methods:{
-        submit(){
-            try {
-                http.post('question/postquestiontexte', 
-                {interogation: this.interogation,
-                 questionTypeId : "TEXTE",
-                propositions : [
-                {proposition : this.proposition1, isCorrect : "false" }
-                ,{proposition : this.proposition2, isCorrect : "false" }
-                ,{proposition : this.proposition3, isCorrect : "false" }
-                ,{proposition : this.reponse, isCorrect : "true" }
-                ]}).then( () => {}).catch((e) => { console.log(e)})
-            } catch (e) {
-                  console.log(e)
-              }
-            this.$router.push('/accueil')
-            window.location.reload()
+        createQuestion(question){
+            var bodyFormData = new FormData();
+            bodyFormData.append('question', JSON.stringify(question));
+            axios({
+                method: 'post',
+                url: `${URL_API}question/postquestion/texte`,
+                data: bodyFormData,
+                headers: {'Content-Type': 'multipart/form-data' }
+                })
+                .then(function (response) {
+                    console.log(response);
+                })
+                .catch(function (response) {
+                    console.log(response);
+            });
         },
-        mounted(){
-        console.log(this.$route.params.id)
+        updateQuestion(question){
+            var bodyFormData = new FormData();
+            bodyFormData.append('question', JSON.stringify(question));
+            axios({
+                method: 'post',
+                url: `${URL_API}question/updatequestion/texte`,
+                data: bodyFormData,
+                headers: {'Content-Type': 'multipart/form-data' }
+                })
+                .then(function (response) {
+                    console.log(response);
+                })
+                .catch(function (response) {
+                    console.log(response);
+            });
+        },
+        submit(){
+            if (this.$route.params.id) {
+                this.updateQuestion(this.question) 
+            }else{
+                this.createQuestion(this.question) 
+            }
+            this.$router.push('/accueil')
+        }
+    },
+    mounted(){
         if (this.$route.params.id) {
             const id = this.$route.params.id
-            console.log('verif', id)
+            http.get(`question/getquestiontexte/${id}`)
+                .then((ret) => {
+                    this.question = ret.data;
+                })
+                .catch((err) =>{
+                    console.log('err', err)
+                })
         }
-    }
     }
 }
 </script>

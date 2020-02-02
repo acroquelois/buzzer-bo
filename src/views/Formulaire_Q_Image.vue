@@ -11,9 +11,9 @@
                 <div class="row q-gutter-sm">
                     <div class="column col">
                         <div class="q-pl-lg text-h7">Intitulé de la question :</div>
-                        <q-input class="q-mt-lg" rounded standout placeholder="Exemple" />
+                        <q-input v-model="question.interogation" class="q-mt-lg" rounded standout/>
                         <div class="q-mt-lg q-pl-lg text-h7">Réponse :</div>
-                        <q-input class="q-mt-md" rounded standout placeholder="Exemple"/>
+                        <q-input v-model="question.reponse.reponse" class="q-mt-md" rounded standout />
                     </div>
                     <div class="column col q-pl-xl">
                         <div class="q-pl-lg text-h7">Image dézoomée :</div>
@@ -30,67 +30,6 @@
             </q-card-actions>
 
             </q-card>
-        <!--<div>
-            <p>Formulaire : Question Image</p>
-        </div>
-        <div>
-            <div>
-                <q-input
-                v-model="title"
-                label="Intitulé de la question"
-                stack-label
-                />
-            </div>
-            <div>
-                <q-uploader
-                    url="http://localhost:8080/upload"
-                    label="Image 1"
-                    color="blue"
-                    square
-                    flat
-                    bordered
-                    style="max-width: 300px"
-                />
-            </div>
-            <div>
-                <q-uploader
-                    url="http://localhost:8080/upload"
-                    label="Image 2"
-                    color="blue"
-                    square
-                    flat
-                    bordered
-                    style="max-width: 300px"
-                    />
-            </div>
-        </div>
-        <div>
-              <q-uploader
-                 url="http://localhost:8080/upload"
-                 label="Image 3"
-                 color="blue"
-                 square
-                 flat
-                 bordered
-                 style="max-width: 300px"
-               />
-        </div>
-        <div>
-          <div>
-              <q-input
-              v-model="answer"
-              label="Réponse"
-              stack-label
-              />
-          </div>
-          <div class="row justify-end">
-              <q-btn
-              color="black"
-              label="Soumettre"
-              @click="submit"
-              />
-          </div>
-        </div>-->
     </div>
 </div>
 </template>
@@ -121,7 +60,16 @@ export default {
     data () {
         return {
             title: 'Que représente cette image ?',
-            answer: null
+            answer: null,
+            question:{
+                interogation : null,
+                questionType :{
+                    id: "IMAGE"
+                },
+                reponse:{
+                    reponse: null
+                },
+            }
         }
     },
     methods:{
