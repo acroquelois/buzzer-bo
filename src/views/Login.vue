@@ -15,7 +15,7 @@
                 </q-input>
             </div>
             <div class="password">
-                <q-input color="white" v-model="password" label="Mot de passe">
+                <q-input color="white" type="password" v-model="password" label="Mot de passe">
                   <template v-slot:prepend>
                     <img src="../assets/user.png"/>
                   </template>
