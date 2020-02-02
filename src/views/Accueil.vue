@@ -14,7 +14,7 @@
           <q-btn flat icon="delete" color="red" @click="deleteQuestion(props.row.id)" />
         </q-td>
         <q-td slot="body-cell-edit" slot-scope="props" :props="props">
-          <q-btn flat icon="edit" color="green-13" @click="updateQuestion(props.row.id)" />
+          <q-btn flat icon="edit" color="green-13" @click="updateQuestion(props.row.id,props.row.questionType.id)" />
         </q-td>
       </q-table>
     </div>
@@ -89,8 +89,14 @@ import {
                 .then( () => {}).catch((e) => { console.log(e)})
              window.location.reload()
         },
-        updateQuestion(toEdit){
+        updateQuestion(toEdit,Type){
+          if(Type == "TEXTE"){
             this.$router.push({name: 'formulaireqtid', params: { id: toEdit }})
+          } else if(Type == "IMAGE"){
+            this.$router.push({name: 'formulaireqiid', params: { id: toEdit }})
+          } else if(Type == "AUDIO"){
+            this.$router.push({name: 'formulaireqaid', params: { id: toEdit }})
+          }
         },
         choix(){
                 this.$router.push('/choixf')

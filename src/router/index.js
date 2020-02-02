@@ -38,8 +38,18 @@ const routes = [
         component: Formulaire_Q_Image
       },
       {
+        path: '/fqi/:id',
+        name: 'formulaireqiid',
+        component: Formulaire_Q_Image
+      },
+      {
         path: '/fqa',
         name: 'formulaireqa',
+        component: Formulaire_Q_Audio
+      },
+      {
+        path: '/fqa/:id',
+        name: 'formulaireqaid',
         component: Formulaire_Q_Audio
       },
       {

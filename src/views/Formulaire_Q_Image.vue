@@ -119,9 +119,44 @@ export default {
                     console.log(response);
             });
         },
+         updateQuestion(question, images){
+            var bodyFormData = new FormData();
+            bodyFormData.append('question', JSON.stringify(question));
+            images.forEach(image => {
+            bodyFormData.append('file', image);   
+            });
+            axios({
+                method: 'post',
+                url: `${URL_API}question/postquestion/image`,
+                data: bodyFormData,
+                headers: {'Content-Type': 'multipart/form-data' }
+                })
+                .then(function (response) {
+                    console.log(response);
+                })
+                .catch(function (response) {
+                    console.log(response);
+            });
+        },
         submit(){
-            this.createQuestion(this.question, [this.image1, this.image2, this.image3])
+            if (this.$route.params.id) {
+                this.updateQuestion(this.question, [this.image1, this.image2, this.image3]) 
+            }else{
+                this.createQuestion(this.question, [this.image1, this.image2, this.image3])
+            }
             this.$router.push('/accueil')
+        }
+    },
+    mounted(){
+        if (this.$route.params.id) {
+            const id = this.$route.params.id
+            http.get(`question/getquestionimage/${id}`)
+                .then((ret) => {
+                    this.question = ret.data;
+                })
+                .catch((err) =>{
+                    console.log('err', err)
+                })
         }
     }
 }
