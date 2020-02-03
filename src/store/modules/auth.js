@@ -20,6 +20,10 @@ const mutations = {
   SET_TOKEN(state, payload) {
     state.token = payload
     localStorage.setItem('token', payload)
+  },
+  REMOVE_TOKEN(state, payload) {
+    state.token = payload
+    localStorage.removeItem('token')
   }
 }
 
@@ -29,6 +33,9 @@ const actions = {
     const tokenResponse = await http.post(`auth/login`, {'email': username, 'password': password})
     commit('SET_TOKEN', tokenResponse.data.token)
     axios.defaults.headers.common['Authorization'] = `Bearer ${tokenResponse.data.token}`;
+  },
+  logOut({ commit }) {
+    commit('REMOVE_TOKEN', null)
   }
 }
 

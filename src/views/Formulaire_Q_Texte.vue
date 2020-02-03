@@ -37,46 +37,6 @@
                 <q-btn class="q-ml-md q-mb-md" @click="submit" outline>Envoyer</q-btn>
             </q-card-actions>
         </q-card>
-        <!-- <div>
-            
-          <div>
-            <div>
-              <q-input
-              v-model="answer"
-              label="Fausse réponse 1"
-              stack-label
-              />
-          </div>
-          <div>
-              <q-input
-              v-model="answer"
-              label="Fausse réponse 2"
-              stack-label
-              />
-          </div>
-          <div>
-              <q-input
-              v-model="answer"
-              label="Fausse réponse 3"
-              stack-label
-              />
-          </div>
-            <div>
-                <q-input
-                v-model="answer"
-                label="Bonne Réponse"
-                stack-label
-                />
-            </div>
-            <div class="row justify-end">
-                <q-btn
-                color="black"
-                label="Soumettre"
-                @click="submit"
-                />
-            </div>
-        </div> 
-      </div>-->
     </div>
 </div>
 </template>
@@ -141,13 +101,22 @@ export default {
                 url: `${URL_API}question/postquestion/texte`,
                 data: bodyFormData,
                 headers: {'Content-Type': 'multipart/form-data' }
+            })
+            .then(() => {
+                this.$q.notify({
+                    color: 'positive',
+                    textColor: 'white',
+                    icon: 'done',
+                    message: "La question a été crée avec succès"
                 })
-                .then(function (response) {
-                    console.log(response);
+            }).catch(() => {
+                this.$q.notify({
+                    color: 'negative',
+                    textColor: 'white',
+                    icon: 'warning',
+                    message: "Impossible de créer la question"
                 })
-                .catch(function (response) {
-                    console.log(response);
-            });
+            })
         },
         updateQuestion(question){
             var bodyFormData = new FormData();
@@ -157,13 +126,22 @@ export default {
                 url: `${URL_API}question/updatequestion/texte`,
                 data: bodyFormData,
                 headers: {'Content-Type': 'multipart/form-data' }
+            })
+            .then(() => {
+                this.$q.notify({
+                    color: 'positive',
+                    textColor: 'white',
+                    icon: 'done',
+                    message: "La question a été modifiée avec succès"
                 })
-                .then(function (response) {
-                    console.log(response);
+            }).catch(() => {
+                this.$q.notify({
+                    color: 'negative',
+                    textColor: 'white',
+                    icon: 'warning',
+                    message: "Impossible de modifier la question"
                 })
-                .catch(function (response) {
-                    console.log(response);
-            });
+            })
         },
         submit(){
             if (this.$route.params.id) {

@@ -46,6 +46,7 @@
                 this.$router.push('/accueil')
             },
             async logOut(){
+                this.$store.dispatch('auth/logOut')
                 this.$router.push('/login')
             }
 
