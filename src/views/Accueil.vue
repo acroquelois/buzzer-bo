@@ -64,12 +64,6 @@ import {
                   align: 'left',
                   sortable: true 
                 },
-                { 
-                  name: 'Url de limage',
-                  label: 'Url de image', 
-                  field: 'url', 
-                  align: 'left' 
-                },
                 { name: 'edit',
                   label: 'Editer',
                   field: 'edit'
