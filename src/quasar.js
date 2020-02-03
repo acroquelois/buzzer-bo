@@ -21,6 +21,8 @@ import {
   QItem,
   QItemSection,
   QItemLabel,
+  QChip,
+  Notify
 } from 'quasar'
 
 Vue.use(Quasar, {
@@ -40,10 +42,12 @@ Vue.use(Quasar, {
     QItem,
     QItemSection,
     QItemLabel,
+    QChip
   },
   directives: {
   },
   plugins: {
+    Notify
   },
   lang: lang
  })

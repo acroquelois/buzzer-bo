@@ -15,7 +15,7 @@
                         <div class="q-mt-lg q-pl-lg text-h7">Réponse :</div>
                         <q-input v-model="question.reponse.reponse" class="q-mt-md" rounded standout placeholder="Réponse"/>
                     </div>
-                    <div class="column col">
+                    <div class="column col" v-if="!question.mediaQuestions">
                         <div class="q-pl-lg text-h7">Images :</div>
                         <q-file class="q-mt-lg" bottom-slots v-model="image1" label="Zoom 1" rounded standout>
                             <template v-slot:prepend>
@@ -42,6 +42,18 @@
                             </template>
                         </q-file>
                     </div>
+                    <div class="column col" v-else>
+                        <div class="q-pl-lg text-h7">Images :</div>
+                        <q-chip class="q-pa-md q-mt-lg sizeSpanChip" v-for="(image, index) in question.mediaQuestions" :key="index"
+                            clickable
+                            removable
+                            rounded 
+                            standout
+                            @click="download(image)"
+                        >
+                            {{ image.url }}
+                        </q-chip>
+                    </div>
                 </div>
             </q-card-section>
             <q-card-actions>
@@ -56,6 +68,7 @@
 <script>
 import http from '../api/http'
 import {URL_API} from '../constants/constant'
+import {FORCE_DOWNLOAD} from "../mixins/Mixins";
 
 import{
     QInput,
@@ -65,11 +78,12 @@ import{
     QCardActions,
     QBtn,
     QFile,
-    QUploader
+    QUploader,
+    QChip
 } from 'quasar'
 export default {
     name: 'Formulaire_Q_Image',
-
+    mixins:[FORCE_DOWNLOAD],
     components: {
         QInput,
         QCard,
@@ -78,7 +92,8 @@ export default {
         QCardActions,
         QBtn,
         QFile,
-        QUploader
+        QUploader,
+        QChip
     },
 
     data () {
@@ -145,7 +160,20 @@ export default {
                 this.createQuestion(this.question, [this.image1, this.image2, this.image3])
             }
             this.$router.push('/accueil')
-        }
+        },
+        download(file) {
+            console.log('file', file)
+            axios.get(file.url, {
+                responseType: 'arraybuffer'
+            })
+            .then(response => {
+                let randomName = Math.random().toString(36).substring(7)
+                this.forceFileDownload(response, `${randomName}.jpg`)
+            })
+            .catch(e =>{
+                console.log(e)
+            })
+        },
     },
     mounted(){
         if (this.$route.params.id) {
@@ -153,6 +181,7 @@ export default {
             http.get(`question/getquestionimage/${id}`)
                 .then((ret) => {
                     this.question = ret.data;
+                    console.log('data', ret.data)
                 })
                 .catch((err) =>{
                     console.log('err', err)
@@ -165,5 +194,12 @@ export default {
 <style>
 .div_max_height{
     min-height: 100vh;
+}
+
+.sizeSpanChip{
+    max-width: 180px; 
+    overflow: hidden;
+    text-overflow: ellipsis;
+    background-color: #1F8EE7 !important;
 }
 </style>
