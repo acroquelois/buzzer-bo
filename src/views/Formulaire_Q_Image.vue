@@ -126,12 +126,21 @@ export default {
                 url: `${URL_API}question/postquestion/image`,
                 data: bodyFormData,
                 headers: {'Content-Type': 'multipart/form-data' }
+            })
+            .then(() => {
+                this.$q.notify({
+                    color: 'positive',
+                    textColor: 'white',
+                    icon: 'done',
+                    message: "La question a été crée avec succès"
                 })
-                .then(function (response) {
-                    console.log(response);
+            }).catch(() => {
+                this.$q.notify({
+                    color: 'negative',
+                    textColor: 'white',
+                    icon: 'warning',
+                    message: "Impossible de créer la question"
                 })
-                .catch(function (response) {
-                    console.log(response);
             });
         },
          updateQuestion(question, images){
@@ -146,11 +155,20 @@ export default {
                 data: bodyFormData,
                 headers: {'Content-Type': 'multipart/form-data' }
                 })
-                .then(function (response) {
-                    console.log(response);
+                .then(() => {
+                this.$q.notify({
+                    color: 'positive',
+                    textColor: 'white',
+                    icon: 'done',
+                    message: "La question a été modifiée avec succès"
                 })
-                .catch(function (response) {
-                    console.log(response);
+            }).catch(() => {
+                this.$q.notify({
+                    color: 'negative',
+                    textColor: 'white',
+                    icon: 'warning',
+                    message: "Impossible de modifier la question"
+                })
             });
         },
         submit(){
