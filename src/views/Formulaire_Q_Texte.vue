@@ -11,13 +11,14 @@
                 <div class="row q-gutter-sm">
                     <div class="column col">
                         <div class="q-pl-lg text-h7">Question :</div>
-                        <q-input class="q-mt-lg" rounded standout v-model="question.interogation"/>
+                        <q-input class="q-mt-lg" rounded standout v-model="question.interogation" placeholder="Question"/>
                         <div class="q-mt-lg q-pl-lg text-h7">Réponse :</div>
                         <q-input 
                         class="q-mt-md" 
                         rounded 
                         standout 
                         v-model="question.reponse.reponse"
+                        placeholder="Réponse"
                         />
                     </div>
                     <div class="column col">
@@ -29,6 +30,7 @@
                         rounded 
                         standout 
                         v-model="proposition.proposition"
+                        placeholder="Proposition"
                         />
                     </div>
                 </div>
