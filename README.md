@@ -1,5 +1,6 @@
 # buzzer-bo
 
+Back office interface to manage questions. Made with VueJs and Quasar
 ## Group members
 - Croquelois Adrien
 ## Project setup
